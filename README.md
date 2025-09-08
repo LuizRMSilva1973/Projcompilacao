@@ -1,5 +1,7 @@
 # Compiladores — VisualAutomata (Prof. Luiz Ricardo Mantovani da Silva)
 
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+
 Aplicativo didático para a disciplina de Compiladores, com parsers LL(1)/SLR(1)/LALR(1)/LR(1), GUI integrada (Lexer → Parser → Semântica → IR/TAC → Otimização → Codegen → Simulador), além de Autômatos (RE→NFA→DFA→min) e CFG a partir de TAC.
 
 Identificação
@@ -296,11 +298,36 @@ Atalhos úteis:
 - Ctrl+1..Ctrl+0 → Aulas 1..10 (preenche)
 - Ctrl+Alt+1..Ctrl+Alt+0 → Aulas 1..10 (preenche e executa)
 
+## Site (GitHub Pages)
+- Ao habilitar GitHub Pages nas configurações do repositório (Settings → Pages) usando a branch `main` e a pasta `/docs`, a página ficará disponível com um resumo navegável do projeto.
+- Conteúdo inicial está em `docs/index.md` (inclui links para CURSO.md e labs).
+
 ## Para Alunos
 - Pré‑requisitos: Python 3.8+ (Tkinter para GUI).
 - Rodar CLI (rápido): veja “Guia Rápido” e “Autômatos (CLI)”.
 - Rodar GUI: `./run_gui.sh` (ou `python3 gui_app.py`).
 - Dica: comece pelo menu “Aulas” da GUI para navegar pelos temas na ordem do curso.
+
+### Ambiente (venv) e Tkinter
+O projeto não usa dependências externas (apenas Python padrão). Recomendado criar um ambiente virtual:
+
+```
+python3 -m venv .venv
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+python -V  # verifique versão 3.8+
+```
+
+Para a GUI, é necessário Tkinter (tk). Instalação por sistema:
+- Ubuntu/Debian: `sudo apt-get update && sudo apt-get install -y python3-tk`
+- Fedora: `sudo dnf install python3-tkinter`
+- Arch/Manjaro: `sudo pacman -S tk`
+- macOS (Homebrew): `brew install tcl-tk` e use o Python do Homebrew
+- Windows: normalmente já vem no instalador oficial do Python
+
+Teste rápido:
+```
+python -c "import tkinter; print('tk ok')"
+```
 
 ## Créditos
 - Coordenação e autoria didática: Prof. Luiz Ricardo Mantovani da Silva.
