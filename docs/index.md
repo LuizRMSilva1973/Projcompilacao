@@ -24,7 +24,5 @@ Projeto didático para a disciplina de Compiladores (Prof. Luiz Ricardo Mantovan
 - Pipeline: `python3 pipeline_demo.py`
 - CFG/Liveness: `python3 cfg_demo.py`
 
-## Observação
 
-Para publicar esta página: habilite GitHub Pages nas configurações do repositório (Settings → Pages) selecionando `main` e diretório `/docs`.
 
