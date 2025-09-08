@@ -1,0 +1,111 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1520' height='720' viewBox='0 0 1520 720'>
+<style> .node{fill:#e8f0fe;stroke:#3b82f6} .edge{stroke:#555;stroke-width:1.2} .label{font:12px sans-serif;fill:#111} </style>
+<rect width='100%' height='100%' fill='white'/>
+<line class='edge' x1='566.25' y1='52' x2='566.25' y2='108' />
+<line class='edge' x1='566.25' y1='132' x2='566.25' y2='188' />
+<line class='edge' x1='566.25' y1='212' x2='40.0' y2='268' />
+<line class='edge' x1='566.25' y1='212' x2='242.5' y2='268' />
+<line class='edge' x1='566.25' y1='212' x2='400.0' y2='268' />
+<line class='edge' x1='566.25' y1='212' x2='617.5' y2='268' />
+<line class='edge' x1='566.25' y1='212' x2='940.0' y2='268' />
+<line class='edge' x1='566.25' y1='212' x2='1157.5' y2='268' />
+<line class='edge' x1='242.5' y1='292' x2='175.0' y2='348' />
+<line class='edge' x1='242.5' y1='292' x2='310.0' y2='348' />
+<line class='edge' x1='175.0' y1='372' x2='130.0' y2='428' />
+<line class='edge' x1='175.0' y1='372' x2='220.0' y2='428' />
+<line class='edge' x1='130.0' y1='452' x2='130.0' y2='508' />
+<line class='edge' x1='220.0' y1='452' x2='220.0' y2='508' />
+<line class='edge' x1='310.0' y1='372' x2='310.0' y2='428' />
+<line class='edge' x1='617.5' y1='292' x2='490.0' y2='348' />
+<line class='edge' x1='617.5' y1='292' x2='580.0' y2='348' />
+<line class='edge' x1='617.5' y1='292' x2='782.5' y2='348' />
+<line class='edge' x1='782.5' y1='372' x2='715.0' y2='428' />
+<line class='edge' x1='782.5' y1='372' x2='850.0' y2='428' />
+<line class='edge' x1='715.0' y1='452' x2='670.0' y2='508' />
+<line class='edge' x1='715.0' y1='452' x2='760.0' y2='508' />
+<line class='edge' x1='670.0' y1='532' x2='670.0' y2='588' />
+<line class='edge' x1='760.0' y1='532' x2='760.0' y2='588' />
+<line class='edge' x1='850.0' y1='452' x2='850.0' y2='508' />
+<line class='edge' x1='1157.5' y1='292' x2='1030.0' y2='348' />
+<line class='edge' x1='1157.5' y1='292' x2='1120.0' y2='348' />
+<line class='edge' x1='1157.5' y1='292' x2='1322.5' y2='348' />
+<line class='edge' x1='1322.5' y1='372' x2='1255.0' y2='428' />
+<line class='edge' x1='1322.5' y1='372' x2='1390.0' y2='428' />
+<line class='edge' x1='1255.0' y1='452' x2='1210.0' y2='508' />
+<line class='edge' x1='1255.0' y1='452' x2='1300.0' y2='508' />
+<line class='edge' x1='1210.0' y1='532' x2='1210.0' y2='588' />
+<line class='edge' x1='1300.0' y1='532' x2='1300.0' y2='588' />
+<line class='edge' x1='1390.0' y1='452' x2='1390.0' y2='508' />
+<rect class='node' x='548.25' y='27.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='566.25' y='44.00' text-anchor='middle'>S</text>
+<rect class='node' x='528.25' y='107.00' width='76.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='566.25' y='124.00' text-anchor='middle'>StmtList</text>
+<rect class='node' x='544.25' y='187.00' width='44.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='566.25' y='204.00' text-anchor='middle'>Stmt</text>
+<rect class='node' x='22.00' y='267.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='40.00' y='284.00' text-anchor='middle'>if</text>
+<rect class='node' x='224.50' y='267.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='242.50' y='284.00' text-anchor='middle'>E</text>
+<rect class='node' x='157.00' y='347.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='175.00' y='364.00' text-anchor='middle'>T</text>
+<rect class='node' x='112.00' y='427.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='130.00' y='444.00' text-anchor='middle'>F</text>
+<rect class='node' x='112.00' y='507.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='130.00' y='524.00' text-anchor='middle'>id</text>
+<rect class='node' x='202.00' y='427.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='220.00' y='444.00' text-anchor='middle'>T'</text>
+<rect class='node' x='202.00' y='507.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='220.00' y='524.00' text-anchor='middle'>ε</text>
+<rect class='node' x='292.00' y='347.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='310.00' y='364.00' text-anchor='middle'>E'</text>
+<rect class='node' x='292.00' y='427.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='310.00' y='444.00' text-anchor='middle'>ε</text>
+<rect class='node' x='378.00' y='267.00' width='44.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='400.00' y='284.00' text-anchor='middle'>then</text>
+<rect class='node' x='595.50' y='267.00' width='44.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='617.50' y='284.00' text-anchor='middle'>Stmt</text>
+<rect class='node' x='472.00' y='347.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='490.00' y='364.00' text-anchor='middle'>id</text>
+<rect class='node' x='562.00' y='347.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='580.00' y='364.00' text-anchor='middle'>=</text>
+<rect class='node' x='764.50' y='347.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='782.50' y='364.00' text-anchor='middle'>E</text>
+<rect class='node' x='697.00' y='427.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='715.00' y='444.00' text-anchor='middle'>T</text>
+<rect class='node' x='652.00' y='507.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='670.00' y='524.00' text-anchor='middle'>F</text>
+<rect class='node' x='652.00' y='587.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='670.00' y='604.00' text-anchor='middle'>id</text>
+<rect class='node' x='742.00' y='507.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='760.00' y='524.00' text-anchor='middle'>T'</text>
+<rect class='node' x='742.00' y='587.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='760.00' y='604.00' text-anchor='middle'>ε</text>
+<rect class='node' x='832.00' y='427.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='850.00' y='444.00' text-anchor='middle'>E'</text>
+<rect class='node' x='832.00' y='507.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='850.00' y='524.00' text-anchor='middle'>ε</text>
+<rect class='node' x='918.00' y='267.00' width='44.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='940.00' y='284.00' text-anchor='middle'>else</text>
+<rect class='node' x='1135.50' y='267.00' width='44.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1157.50' y='284.00' text-anchor='middle'>Stmt</text>
+<rect class='node' x='1012.00' y='347.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1030.00' y='364.00' text-anchor='middle'>id</text>
+<rect class='node' x='1102.00' y='347.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1120.00' y='364.00' text-anchor='middle'>=</text>
+<rect class='node' x='1304.50' y='347.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1322.50' y='364.00' text-anchor='middle'>E</text>
+<rect class='node' x='1237.00' y='427.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1255.00' y='444.00' text-anchor='middle'>T</text>
+<rect class='node' x='1192.00' y='507.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1210.00' y='524.00' text-anchor='middle'>F</text>
+<rect class='node' x='1192.00' y='587.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1210.00' y='604.00' text-anchor='middle'>id</text>
+<rect class='node' x='1282.00' y='507.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1300.00' y='524.00' text-anchor='middle'>T'</text>
+<rect class='node' x='1282.00' y='587.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1300.00' y='604.00' text-anchor='middle'>ε</text>
+<rect class='node' x='1372.00' y='427.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1390.00' y='444.00' text-anchor='middle'>E'</text>
+<rect class='node' x='1372.00' y='507.00' width='36.00' height='26.00' rx='4' ry='4' />
+<text class='label' x='1390.00' y='524.00' text-anchor='middle'>ε</text>
+</svg>

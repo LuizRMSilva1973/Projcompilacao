@@ -1,0 +1,10 @@
+# Exercício 3 — Fatoração à esquerda (antes)
+# Problema: prefixo comum em S -> id ( L ) | id causa conflito em LL(1)
+
+%Terminals: id ( ) ,
+%NonTerminals: S L
+%Start: S
+%Productions:
+S -> id ( L ) | id
+L -> id , L | id
+

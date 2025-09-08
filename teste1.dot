@@ -1,0 +1,17 @@
+digraph NFA {
+  rankdir=LR;
+  node [shape=circle];
+  __start [shape=point];
+  __start -> q4;
+  q0 [shape=circle];
+  q1 [shape=doublecircle];
+  q2 [shape=circle];
+  q3 [shape=circle];
+  q4 [shape=circle];
+  q5 [shape=circle];
+  q4 -> q3 [label="a"];
+  q3 -> q0 [label="ε"];
+  q0 -> q5 [label="b"];
+  q5 -> q2 [label="ε"];
+  q2 -> q1 [label="c"];
+}

@@ -1,0 +1,17 @@
+# Exercício 2 — If/then/else sem precedência (sem %Right else)
+
+%Terminals: if then else id num = ; + * ( )
+%Left +
+%Left *
+%NonTerminals: S StmtList Stmt E E' T T' F
+%Start: S
+%Productions:
+S        -> StmtList
+StmtList -> Stmt ; StmtList | Stmt
+Stmt     -> id = E | if E then Stmt | if E then Stmt else Stmt
+E   -> T E'
+E'  -> + T E' | ε
+T   -> F T'
+T'  -> * F T' | ε
+F   -> ( E ) | id | num
+

@@ -1,0 +1,15 @@
+{
+  "grammar_path": "/mnt/dados/MEGABACKUP/projetos/visualautomata/exercicios/ex2_else_com.txt",
+  "parser_method": "slr1",
+  "parser_auto_lex": true,
+  "parser_trace": true,
+  "parser_tables": true,
+  "parser_items": true,
+  "sem_arith_bool": false,
+  "sem_eq_same": false,
+  "regex_last": "cb",
+  "regex_test_last": "cb",
+  "auto_view": "dfa",
+  "codegen_regalloc": true,
+  "codegen_k": 3
+}

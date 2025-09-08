@@ -1,0 +1,36 @@
+# Template de gramática (CFG) para VisualAutomata - Parsing Tester
+#
+# Como usar:
+# 1) Salve este arquivo como, por exemplo, "minha_gramatica.txt".
+# 2) Preencha as seções abaixo conforme seu problema.
+# 3) Execute o script principal apontando para sua gramática:
+#    python3 parsing_tester.py --grammar minha_gramatica.txt --input "seus tokens" --method both --trace
+#    (ou use os scripts ./run_ll1.sh, ./run_slr1.sh, ./run_both.sh)
+
+# Liste aqui todos os terminais (tokens de entrada). Exemplos comuns: id, num, palavras‑chave, operadores.
+%Terminals: id num + - * / ( )
+
+# Liste aqui todos os não‑terminais.
+%NonTerminals: S E T F
+
+# Símbolo inicial da gramática.
+%Start: S
+
+# Regras de produção. Use ε (ou epsilon/eps) para vazio.
+# Exemplo inicial: linguagem de expressões simples (ajuste livremente):
+%Productions:
+S -> E
+E -> E + T | E - T | T
+T -> T * F | T / F | F
+F -> ( E ) | id | num
+
+# Dicas:
+# - Você pode começar com algo mais simples e expandir aos poucos.
+# - Para evitar conflitos, considere fatoração à esquerda e eliminação de recursão à esquerda em LL(1).
+# - No SLR(1), você pode resolver conflitos com precedência/associatividade (veja abaixo).
+
+# (Opcional) Precedência e associatividade para resolver conflitos (ordem: de menor para maior precedência)
+#%Left + -
+#%Left * /
+#%Right ^
+

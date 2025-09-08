@@ -1,0 +1,9 @@
+# Exercício 5 — Gramática ambígua de expressões (antes)
+# Problema: sem precedência/associatividade explícitas, gera conflitos em SLR(1)
+
+%Terminals: id + * ( )
+%NonTerminals: E
+%Start: E
+%Productions:
+E -> E + E | E * E | ( E ) | id
+

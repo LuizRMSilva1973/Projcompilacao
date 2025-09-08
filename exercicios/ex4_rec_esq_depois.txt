@@ -1,0 +1,13 @@
+# Exercício 4 — Eliminação de recursão à esquerda (depois)
+# Solução: introduzir E' e T' removendo recursão à esquerda
+
+%Terminals: id + * ( )
+%NonTerminals: E E' T T' F
+%Start: E
+%Productions:
+E  -> T E'
+E' -> + T E' | ε
+T  -> F T'
+T' -> * F T' | ε
+F  -> ( E ) | id
+

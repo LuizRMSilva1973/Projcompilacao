@@ -1,0 +1,18 @@
+# Exercício 2 — If/then/else com gramática não ambígua (matched/unmatched)
+
+%Terminals: if then else id num = ; + * ( )
+%Left +
+%Left *
+%NonTerminals: S Stmt Matched Unmatched E E' T T' F
+%Start: S
+%Productions:
+S         -> Stmt
+Stmt      -> Matched | Unmatched
+Matched   -> if E then Matched else Matched | id = E
+Unmatched -> if E then Stmt | if E then Matched else Unmatched
+E   -> T E'
+E'  -> + T E' | ε
+T   -> F T'
+T'  -> * F T' | ε
+F   -> ( E ) | id | num
+

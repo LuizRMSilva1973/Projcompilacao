@@ -1,0 +1,12 @@
+# Exercício 3 — Fatoração à esquerda (depois)
+# Solução: fatorar prefixos comuns e introduzir não-terminais auxiliares
+
+%Terminals: id ( ) ,
+%NonTerminals: S A L L'
+%Start: S
+%Productions:
+S  -> id A
+A  -> ( L ) | ε
+L  -> id L'
+L' -> , L | ε
+

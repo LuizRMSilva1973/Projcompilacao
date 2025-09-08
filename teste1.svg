@@ -1,0 +1,27 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='800'>
+<style>.st{fill:#fff;stroke:#111;stroke-width:2}.acc{stroke:#3b82f6;stroke-width:3}.txt{font:12px sans-serif}.edge{stroke:#555;stroke-width:1;fill:none;marker-end:url(#a)}.lbl{font:11px sans-serif;fill:#111}</style>
+<defs><marker id='a' markerWidth='10' markerHeight='7' refX='10' refY='3.5' orient='auto'><polygon points='0 0, 10 3.5, 0 7' fill='#555'/></marker></defs>
+<path class='edge' d='M 200 60 C 130.0 60, 130.0 180, 60 180' />
+<text class='lbl' x='130.0' y='114.0' text-anchor='middle'>a</text>
+<path class='edge' d='M 60 180 C 130.0 180, 130.0 300, 200 300' />
+<text class='lbl' x='130.0' y='234.0' text-anchor='middle'> </text>
+<path class='edge' d='M 200 300 C 130.0 300, 130.0 60, 60 60' />
+<text class='lbl' x='130.0' y='174.0' text-anchor='middle'>b</text>
+<path class='edge' d='M 60 60 C 130.0 60, 130.0 180, 200 180' />
+<text class='lbl' x='130.0' y='114.0' text-anchor='middle'> </text>
+<path class='edge' d='M 200 180 C 130.0 180, 130.0 300, 60 300' />
+<text class='lbl' x='130.0' y='234.0' text-anchor='middle'>c</text>
+<circle class='st' cx='60' cy='60' r='24' />
+<text class='txt' x='60' y='64' text-anchor='middle'>q0</text>
+<circle class='st' cx='200' cy='60' r='24' />
+<path class='edge' d='M 150 60 L 176 60' />
+<text class='txt' x='200' y='64' text-anchor='middle'>q1</text>
+<circle class='st' cx='60' cy='180' r='24' />
+<text class='txt' x='60' y='184' text-anchor='middle'>q2</text>
+<circle class='st' cx='200' cy='180' r='24' />
+<text class='txt' x='200' y='184' text-anchor='middle'>q3</text>
+<circle class='st acc' cx='60' cy='300' r='24' />
+<text class='txt' x='60' y='304' text-anchor='middle'>q4</text>
+<circle class='st' cx='200' cy='300' r='24' />
+<text class='txt' x='200' y='304' text-anchor='middle'>q5</text>
+</svg>

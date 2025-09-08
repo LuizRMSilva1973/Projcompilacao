@@ -1,0 +1,12 @@
+# Exercício 5 — Gramática ambígua com resolução por precedência
+# Solução: usar diretivas %Left/%Right para resolver conflitos em ACTION
+
+%Left +
+%Left *
+
+%Terminals: id + * ( )
+%NonTerminals: E
+%Start: E
+%Productions:
+E -> E + E | E * E | ( E ) | id
+

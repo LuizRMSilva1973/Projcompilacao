@@ -1,0 +1,11 @@
+# Gramática de expressões aritméticas (clássica) para teste
+%Terminals: id + * ( )
+%NonTerminals: E E' T T' F
+%Start: E
+%Productions:
+E  -> T E'
+E' -> + T E' | ε
+T  -> F T'
+T' -> * F T' | ε
+F  -> ( E ) | id
+

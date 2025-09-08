@@ -1,0 +1,10 @@
+# Banco de Regex (Lab 11)
+
+# Formato:
+# regex ; exemplos aceitos ; exemplos rejeitados
+
+(a|b)*abb ; abb, aabb, aaabb ; ab, aab, aaba
+a(b|c)+ ; ab, ac, abbc ; a, b, acd
+0*1(0|1)* ; 1, 01, 0011 ; 10, 2, 00a
+(ab|ba)* ; ab, ba, abba, baba ; aa, bb, aba
+(a|b)?c ; c, ac, bc ; a, b, cc

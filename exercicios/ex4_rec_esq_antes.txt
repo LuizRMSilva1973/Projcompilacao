@@ -1,0 +1,11 @@
+# Exercício 4 — Eliminação de recursão à esquerda (antes)
+# Problema: recursão imediata em E e T inviabiliza LL(1)
+
+%Terminals: id + * ( )
+%NonTerminals: E T F
+%Start: E
+%Productions:
+E -> E + T | T
+T -> T * F | F
+F -> ( E ) | id
+
