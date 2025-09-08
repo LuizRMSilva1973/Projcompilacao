@@ -1,6 +1,8 @@
 # Compiladores — VisualAutomata (Prof. Luiz Ricardo Mantovani da Silva)
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+[![Docs](https://img.shields.io/badge/Docs-GitHub%20Pages-brightgreen)](https://luizrmsilva1973.github.io/Projcompilacao/)
+[![Release](https://img.shields.io/badge/Release-v1.0--aulas-orange)](https://github.com/LuizRMSilva1973/Projcompilacao/releases)
 
 Aplicativo didático para a disciplina de Compiladores, com parsers LL(1)/SLR(1)/LALR(1)/LR(1), GUI integrada (Lexer → Parser → Semântica → IR/TAC → Otimização → Codegen → Simulador), além de Autômatos (RE→NFA→DFA→min) e CFG a partir de TAC.
 
