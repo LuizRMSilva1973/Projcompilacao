@@ -2,6 +2,14 @@
 
 Todas as mudanças notáveis deste projeto.
 
+## [v1.1-exemplos-ast] - 2025-10-01
+- Exemplos simples de gramáticas em `exemplos_simples/` e script `run_exemplos.sh`.
+- GUI: submenu “Exemplos Simples” no menu Exemplos.
+- IR/TAC (GUI): botão “Demo 3 casos” com visualização das 3 árvores AST e exportação individual/lote (SVG/JSON).
+- Semântica (GUI): “Visualizar AST” e exportação da AST atual (SVG/JSON).
+- Demo de linha de comando: `ast_tac_demo.py` (AST → typecheck → TAC) com saída clara.
+- README atualizado com instruções de uso.
+
 ## [v1.0-aulas] - 2025-09-08
 - Identidade didática para a disciplina de Compiladores (README atualizado).
 - GUI integrada com menu “Aulas” e “Aulas (auto)”, atalhos Ctrl+1..0 / Ctrl+Alt+1..0.
@@ -15,3 +23,4 @@ Todas as mudanças notáveis deste projeto.
 - Labs organizados por aula em `labs/` e exercícios em `exercicios/`.
 
 [v1.0-aulas]: https://github.com/LuizRMSilva1973/Projcompilacao/releases/tag/v1.0-aulas
+[v1.1-exemplos-ast]: https://github.com/LuizRMSilva1973/Projcompilacao/releases/tag/v1.1-exemplos-ast
