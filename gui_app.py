@@ -1225,6 +1225,8 @@ msg = num
         ttk.Button(btns, text="Importar árvore do Parser", command=self.import_tree_from_parser).pack(side='left', padx=6)
         ttk.Button(btns, text="Importar árvore JSON...", command=self.import_tree_json).pack(side='left', padx=6)
         ttk.Button(btns, text="Visualizar AST", command=self.show_ast_current).pack(side='left', padx=6)
+        ttk.Button(btns, text="Exportar AST (SVG)", command=self.export_ast_current_svg).pack(side='left')
+        ttk.Button(btns, text="Exportar AST (JSON)", command=self.export_ast_current_json).pack(side='left', padx=6)
         ttk.Button(btns, text="Exemplo OK", command=self.fill_sema_example).pack(side='right')
         ttk.Button(btns, text="Exemplo (erro)", command=self.fill_sema_example_error).pack(side='right', padx=6)
         # Opções de regras de tipo
@@ -1714,6 +1716,44 @@ msg = num
         except Exception as e:
             try:
                 messagebox.showerror('Erro', f'Falha ao visualizar AST: {e}')
+            except Exception:
+                pass
+
+    def export_ast_current_svg(self):
+        # Exporta a AST atual em SVG
+        try:
+            if not getattr(self, 'ast_prog', None):
+                prog = self._parse_simple_program(self.sema_input.get('1.0','end'))
+                self.ast_prog = prog
+            root = self._ast_to_view(self.ast_prog)
+            from tkinter import filedialog
+            path = filedialog.asksaveasfilename(title="Exportar AST atual (SVG)", defaultextension='.svg', filetypes=[["SVG",".svg"]])
+            if not path:
+                return
+            pt = _load_module('parsing_tester.py', 'pt_export')
+            pt.export_tree_svg(root, path)
+        except Exception as e:
+            try:
+                messagebox.showerror('Erro', f'Falha ao exportar AST (SVG): {e}')
+            except Exception:
+                pass
+
+    def export_ast_current_json(self):
+        # Exporta a AST atual em JSON
+        try:
+            if not getattr(self, 'ast_prog', None):
+                prog = self._parse_simple_program(self.sema_input.get('1.0','end'))
+                self.ast_prog = prog
+            root = self._ast_to_view(self.ast_prog)
+            from tkinter import filedialog
+            path = filedialog.asksaveasfilename(title="Exportar AST atual (JSON)", defaultextension='.json', filetypes=[["JSON",".json"]])
+            if not path:
+                return
+            pt = _load_module('parsing_tester.py', 'pt_export')
+            pt.export_tree_json(root, path, derivations=None, kind='AST')
+        except Exception as e:
+            try:
+                messagebox.showerror('Erro', f'Falha ao exportar AST (JSON): {e}')
             except Exception:
                 pass
 
