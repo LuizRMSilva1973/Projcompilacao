@@ -1608,6 +1608,51 @@ msg = num
             return
         win = tk.Toplevel(self)
         win.title('AST — Demo 3 casos')
+        # toolbar geral (exportar todas)
+        tbar = ttk.Frame(win)
+        tbar.pack(fill='x', padx=6, pady=4)
+        ttk.Label(tbar, text='Exportar todas:').pack(side='left')
+        def _slug(s: str) -> str:
+            import re
+            s = s.strip().lower().replace(' ', '_')
+            return re.sub(r"[^a-z0-9_\-]+", "", s)[:40] or 'ast'
+        def export_all_svg():
+            try:
+                from tkinter import filedialog
+                base = filedialog.asksaveasfilename(title='Salvar todas (SVG, usa como prefixo)', defaultextension='.svg', filetypes=[["SVG",".svg"]])
+                if not base:
+                    return
+                # remove extension to use as prefix
+                if base.lower().endswith('.svg'):
+                    base = base[:-4]
+                pt = _load_module('parsing_tester.py', 'pt_export')
+                for idx, (title, root) in enumerate(titled_roots, start=1):
+                    out = f"{base}_{idx}_{_slug(title)}.svg"
+                    pt.export_tree_svg(root, out)
+            except Exception as e:
+                try:
+                    messagebox.showerror('Erro', f'Falha ao exportar todas (SVG): {e}')
+                except Exception:
+                    pass
+        def export_all_json():
+            try:
+                from tkinter import filedialog
+                base = filedialog.asksaveasfilename(title='Salvar todas (JSON, usa como prefixo)', defaultextension='.json', filetypes=[["JSON",".json"]])
+                if not base:
+                    return
+                if base.lower().endswith('.json'):
+                    base = base[:-5]
+                pt = _load_module('parsing_tester.py', 'pt_export')
+                for idx, (title, root) in enumerate(titled_roots, start=1):
+                    out = f"{base}_{idx}_{_slug(title)}.json"
+                    pt.export_tree_json(root, out, derivations=None, kind='AST')
+            except Exception as e:
+                try:
+                    messagebox.showerror('Erro', f'Falha ao exportar todas (JSON): {e}')
+                except Exception:
+                    pass
+        ttk.Button(tbar, text='SVG (prefixo)', command=export_all_svg).pack(side='left', padx=4)
+        ttk.Button(tbar, text='JSON (prefixo)', command=export_all_json).pack(side='left')
         grid = ttk.Frame(win)
         grid.pack(fill='both', expand=True)
         cols = 2
