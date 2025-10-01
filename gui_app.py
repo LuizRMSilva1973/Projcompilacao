@@ -1224,6 +1224,7 @@ msg = num
         ttk.Button(btns, text="Enviar para IR/TAC", command=self.push_ast_to_ir).pack(side='left', padx=6)
         ttk.Button(btns, text="Importar árvore do Parser", command=self.import_tree_from_parser).pack(side='left', padx=6)
         ttk.Button(btns, text="Importar árvore JSON...", command=self.import_tree_json).pack(side='left', padx=6)
+        ttk.Button(btns, text="Visualizar AST", command=self.show_ast_current).pack(side='left', padx=6)
         ttk.Button(btns, text="Exemplo OK", command=self.fill_sema_example).pack(side='right')
         ttk.Button(btns, text="Exemplo (erro)", command=self.fill_sema_example_error).pack(side='right', padx=6)
         # Opções de regras de tipo
@@ -1613,7 +1614,41 @@ msg = num
         for i, (title, root) in enumerate(titled_roots):
             frame = ttk.Frame(grid, borderwidth=1, relief='sunken')
             frame.grid(row=i//cols, column=i%cols, sticky='nsew', padx=6, pady=6)
-            ttk.Label(frame, text=title).pack(anchor='w')
+            # toolbar por árvore
+            bar = ttk.Frame(frame)
+            bar.pack(fill='x')
+            ttk.Label(bar, text=title).pack(side='left')
+            btns = ttk.Frame(bar)
+            btns.pack(side='right')
+            def export_svg(root=root, t=title):
+                try:
+                    from tkinter import filedialog
+                    path = filedialog.asksaveasfilename(title=f"Exportar AST '{t}' (SVG)", defaultextension='.svg', filetypes=[["SVG",".svg"]])
+                    if not path:
+                        return
+                    pt = _load_module('parsing_tester.py', 'pt_export')
+                    pt.export_tree_svg(root, path)
+                except Exception as e:
+                    try:
+                        messagebox.showerror('Erro', f'Falha ao exportar SVG: {e}')
+                    except Exception:
+                        pass
+            def export_json(root=root, t=title):
+                try:
+                    from tkinter import filedialog
+                    path = filedialog.asksaveasfilename(title=f"Exportar AST '{t}' (JSON)", defaultextension='.json', filetypes=[["JSON",".json"]])
+                    if not path:
+                        return
+                    pt = _load_module('parsing_tester.py', 'pt_export')
+                    # kind='AST' (sem derivations)
+                    pt.export_tree_json(root, path, derivations=None, kind='AST')
+                except Exception as e:
+                    try:
+                        messagebox.showerror('Erro', f'Falha ao exportar JSON: {e}')
+                    except Exception:
+                        pass
+            ttk.Button(btns, text='Export SVG', command=export_svg).pack(side='right', padx=2)
+            ttk.Button(btns, text='Export JSON', command=export_json).pack(side='right', padx=2)
             canvas = tk.Canvas(frame, background='white', width=520, height=380)
             hbar = ttk.Scrollbar(frame, orient='horizontal', command=canvas.xview)
             vbar = ttk.Scrollbar(frame, orient='vertical', command=canvas.yview)
@@ -1622,6 +1657,20 @@ msg = num
             vbar.pack(side='right', fill='y')
             hbar.pack(side='bottom', fill='x')
             self._draw_tree_on_canvas(canvas, root)
+
+    def show_ast_current(self):
+        # Visualiza a AST atual (Semântica). Se não existir, tenta parse do texto.
+        try:
+            if not getattr(self, 'ast_prog', None):
+                prog = self._parse_simple_program(self.sema_input.get('1.0','end'))
+                self.ast_prog = prog
+            root = self._ast_to_view(self.ast_prog)
+            self._show_ast_views([("AST atual", root)])
+        except Exception as e:
+            try:
+                messagebox.showerror('Erro', f'Falha ao visualizar AST: {e}')
+            except Exception:
+                pass
 
     def fill_ir_example(self):
         try:
