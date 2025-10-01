@@ -1546,6 +1546,7 @@ msg = num
                     Assign("x", BinOp("==", Var("x"), Num(2))),
                 ])),
             ]
+            ast_views = []
             for title, prog in cases:
                 self.ir_output.insert('end', f"\n=== {title} ===\n")
                 # Typecheck
@@ -1565,9 +1566,62 @@ msg = num
                 self.ir_output.insert('end', "-- TAC --\n")
                 for instr in gen.code:
                     self.ir_output.insert('end', f"{instr.op} {' '.join(instr.args)}\n")
+                # AST view para visualização
+                ast_views.append((title, self._ast_to_view(prog)))
             # Não altera self.tac_list (este é um demo múltiplo)
+            # Exibir árvores AST lado a lado
+            self._show_ast_views(ast_views)
         except Exception as e:
             self.ir_output.insert('end', f"Erro no demo: {e}\n")
+
+    def _ast_to_view(self, node):
+        # Converte AST (Lab 06) em um nó simples com 'symbol' e 'children'
+        lab06 = _load_module('labs/06_semantica/ast_template.py', 'lab06_ast')
+        class V:
+            __slots__ = ('symbol','children')
+            def __init__(self, symbol, children=None):
+                self.symbol = symbol
+                self.children = children or []
+        if isinstance(node, lab06.Program):
+            return V('Program', [self._ast_to_view(s) for s in node.body])
+        if isinstance(node, lab06.Seq):
+            return V('Seq', [self._ast_to_view(s) for s in node.items])
+        if isinstance(node, lab06.Assign):
+            return V(f'Assign {node.name}', [self._ast_to_view(node.expr)])
+        if isinstance(node, lab06.IfThenElse):
+            ch = [V('cond', [self._ast_to_view(node.cond)]), V('then', [self._ast_to_view(node.then_branch)])]
+            if node.else_branch is not None:
+                ch.append(V('else', [self._ast_to_view(node.else_branch)]))
+            return V('If', ch)
+        if isinstance(node, lab06.BinOp):
+            return V(node.op, [self._ast_to_view(node.left), self._ast_to_view(node.right)])
+        if isinstance(node, lab06.Var):
+            return V(f'Var({node.name})')
+        if isinstance(node, lab06.Num):
+            return V(f'Num({node.value})')
+        return V(str(node))
+
+    def _show_ast_views(self, titled_roots):
+        # Abre janela para mostrar árvores AST lado a lado (até 2 por linha)
+        if not titled_roots:
+            return
+        win = tk.Toplevel(self)
+        win.title('AST — Demo 3 casos')
+        grid = ttk.Frame(win)
+        grid.pack(fill='both', expand=True)
+        cols = 2
+        for i, (title, root) in enumerate(titled_roots):
+            frame = ttk.Frame(grid, borderwidth=1, relief='sunken')
+            frame.grid(row=i//cols, column=i%cols, sticky='nsew', padx=6, pady=6)
+            ttk.Label(frame, text=title).pack(anchor='w')
+            canvas = tk.Canvas(frame, background='white', width=520, height=380)
+            hbar = ttk.Scrollbar(frame, orient='horizontal', command=canvas.xview)
+            vbar = ttk.Scrollbar(frame, orient='vertical', command=canvas.yview)
+            canvas.configure(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
+            canvas.pack(side='left', fill='both', expand=True)
+            vbar.pack(side='right', fill='y')
+            hbar.pack(side='bottom', fill='x')
+            self._draw_tree_on_canvas(canvas, root)
 
     def fill_ir_example(self):
         try:
