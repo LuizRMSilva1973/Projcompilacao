@@ -1,0 +1,7 @@
+# Parênteses e identificadores
+%Terminals: id ( )
+%NonTerminals: E
+%Start: E
+%Productions:
+E -> ( E ) | id
+

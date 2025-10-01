@@ -1,0 +1,7 @@
+# Gramática mínima
+%Terminals: id
+%NonTerminals: S
+%Start: S
+%Productions:
+S -> id
+

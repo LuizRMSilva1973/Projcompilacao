@@ -99,6 +99,20 @@ python parsing_tester.py --grammar expr.txt --input "id + id * id" --method ll1 
 python parsing_tester.py --grammar expr.txt --input "id + id * id" --method both --export-svg saida.svg  # gera saida_ll1.svg e saida_slr1.svg
 ```
 
+**Exemplos Simples**
+- `exemplos_simples/`: quatro gramáticas mínimas para estudar rapidamente:
+  - `01_min.txt`: `S -> id`.
+  - `02_paren.txt`: apenas parênteses e `id`.
+  - `03_sum_ll1.txt`: soma e produto (LL(1)).
+  - `04_assign_slr.txt`: atribuição simples (boa para SLR(1)).
+- Rodar todos de uma vez: `bash run_exemplos.sh`.
+- Rodar individual: `python3 parsing_tester.py --grammar exemplos_simples/03_sum_ll1.txt --input "id + id * id" --method both --trace`.
+
+**AST/TAC Demo**
+- Gera AST (Lab 06), verifica tipos e produz TAC (Lab 07):
+  - `python3 ast_tac_demo.py`
+- Saída mostra a árvore em texto, erros de tipo (se houver) e o TAC com instruções `loadI/load/add/mul/cmpeq/store`.
+
 ## Saída
 - LL(1): tabela preditiva, conflitos (se houver) e trace de derivação.
 - SLR(1): ACTION/GOTO, conflitos shift/reduce ou reduce/reduce e trace de desloca/reduz.

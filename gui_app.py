@@ -164,6 +164,10 @@ class App(tk.Tk):
         self._examples_gram = tk.Menu(exm, tearoff=0)
         self._populate_grammar_examples(self._examples_gram)
         exm.add_cascade(label='Gramáticas', menu=self._examples_gram)
+        # Submenu separado para exemplos simples
+        self._examples_simple = tk.Menu(exm, tearoff=0)
+        self._populate_simple_examples(self._examples_simple)
+        exm.add_cascade(label='Exemplos Simples', menu=self._examples_simple)
         self._examples_regex = tk.Menu(exm, tearoff=0)
         self._populate_regex_examples(self._examples_regex)
         exm.add_cascade(label='Regex (bank)', menu=self._examples_regex)
@@ -618,6 +622,28 @@ class App(tk.Tk):
         menu.delete(0, 'end')
         for path, label, inp in examples:
             menu.add_command(label=label, command=lambda p=path, i=inp: self._apply_grammar_example(p, i))
+
+    def _populate_simple_examples(self, menu: tk.Menu):
+        # Submenu com os exemplos simples do diretório exemplos_simples
+        try:
+            items = []
+            def add(label: str, path: str, inp: str):
+                if os.path.isfile(path):
+                    items.append((label, path, inp))
+            sdir = os.path.join(BASE_DIR, 'exemplos_simples')
+            mapping = [
+                ('01 — mínimo (S->id)', '01_min.txt', 'id'),
+                ('02 — parênteses', '02_paren.txt', '( id )'),
+                ('03 — soma/prod LL(1)', '03_sum_ll1.txt', 'id + id * id'),
+                ('04 — atribuição (SLR)', '04_assign_slr.txt', 'id = id'),
+            ]
+            for label, fname, inp in mapping:
+                add(label, os.path.join(sdir, fname), inp)
+            menu.delete(0, 'end')
+            for label, path, inp in items:
+                menu.add_command(label=label, command=lambda p=path, i=inp: self._apply_grammar_example(p, i))
+        except Exception:
+            pass
 
     def _apply_grammar_example(self, path: str, input_str: str):
         self.grammar_path.set(path)
@@ -1470,8 +1496,9 @@ msg = num
         btns.pack(fill='x', padx=8, pady=6)
         ttk.Button(btns, text="Gerar TAC", command=self.run_tac).pack(side='left')
         ttk.Button(btns, text="Enviar para Codegen", command=self.push_tac_to_codegen).pack(side='left', padx=6)
-        ttk.Button(btns, text="Exemplo 1", command=self.fill_ir_example).pack(side='right')
-        ttk.Button(btns, text="Exemplo 2", command=self.fill_ir_example2).pack(side='right', padx=6)
+        ttk.Button(btns, text="Demo 3 casos", command=self.ir_demo_three_cases).pack(side='right')
+        ttk.Button(btns, text="Exemplo 1", command=self.fill_ir_example).pack(side='right', padx=6)
+        ttk.Button(btns, text="Exemplo 2", command=self.fill_ir_example2).pack(side='right')
         ttk.Label(frame, text="Dica: cada expressão vira temporários tN e instruções (load/loadI, add, mul, cmpeq, store). Use o botão abaixo para inspecionar o TAC gerado.").pack(anchor='w', padx=8, pady=(2,0))
         self.ir_output = tk.Text(frame, height=22)
         self.ir_output.pack(fill='both', expand=True, padx=8, pady=6)
@@ -1497,6 +1524,50 @@ msg = num
                 self.ir_output.insert('end', f"{op} {' '.join(args)}\n")
         except Exception as e:
             self.ir_output.insert('end', f"Erro: {e}\n")
+
+    def ir_demo_three_cases(self):
+        # Gera três casos de AST -> typecheck -> TAC e imprime aqui
+        self.ir_output.delete('1.0','end')
+        try:
+            lab06 = _load_module('labs/06_semantica/ast_template.py', 'lab06_ast')
+            lab07 = _load_module('labs/07_ast_ir/tac_template.py', 'lab07_tac')
+            Program, Assign, Var, Num, BinOp = lab06.Program, lab06.Assign, lab06.Var, lab06.Num, lab06.BinOp
+            cases = [
+                ("Exemplo 1: atribuicoes e expressoes", Program([
+                    Assign("x", Num(1)),
+                    Assign("y", BinOp("+", Var("x"), Num(2))),
+                    Assign("z", BinOp("*", Var("y"), Num(3))),
+                ])),
+                ("Exemplo 2: precedencia via AST", Program([
+                    Assign("w", BinOp("*", Num(10), BinOp("+", Num(2), Num(3)))),
+                ])),
+                ("Exemplo 3: erro de tipos (int -> bool)", Program([
+                    Assign("x", Num(1)),
+                    Assign("x", BinOp("==", Var("x"), Num(2))),
+                ])),
+            ]
+            for title, prog in cases:
+                self.ir_output.insert('end', f"\n=== {title} ===\n")
+                # Typecheck
+                tc = lab06.TypeChecker()
+                errs = tc.check(prog)
+                if errs:
+                    self.ir_output.insert('end', "-- Erros de tipo --\n")
+                    for e in errs:
+                        self.ir_output.insert('end', f"  - {e}\n")
+                else:
+                    self.ir_output.insert('end', "-- Tipagem OK --\n")
+                # TAC
+                gen = lab07.TacGen()
+                for st in prog.body:
+                    if isinstance(st, lab06.Assign):
+                        gen.gen_assign(st.name, st.expr)
+                self.ir_output.insert('end', "-- TAC --\n")
+                for instr in gen.code:
+                    self.ir_output.insert('end', f"{instr.op} {' '.join(instr.args)}\n")
+            # Não altera self.tac_list (este é um demo múltiplo)
+        except Exception as e:
+            self.ir_output.insert('end', f"Erro no demo: {e}\n")
 
     def fill_ir_example(self):
         try:

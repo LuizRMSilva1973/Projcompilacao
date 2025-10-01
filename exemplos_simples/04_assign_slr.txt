@@ -1,0 +1,7 @@
+# Atribuição simples (boa para SLR1)
+%Terminals: id =
+%NonTerminals: S
+%Start: S
+%Productions:
+S -> id = id
+
